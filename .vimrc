@@ -1,10 +1,21 @@
-" set nocompatible
-syntax on
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim/
+if has('python3')
+endif
+
+"set encoding=utf8
+let mapleader=" "
+
+filetype off                  " required
+
+" 启用vundle来管理vim插件
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" 安装插件写在这之后
+
+" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'https://github.com/Valloric/YouCompleteMe'
+Plugin 'rdnetto/YCM-Generator'
+"Plugin 'https://github.com/Valloric/YouCompleteMe'
+"let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 Plugin 'Chiel92/vim-autoformat'
 nnoremap <F6> :Autoformat<CR>
 let g:autoformat_autoindent = 0
@@ -19,7 +30,7 @@ Plugin 'kien/rainbow_parentheses.vim'
 let g:rbpt_colorpairs = [
 			\ ['brown',       'RoyalBlue3'],
 			\ ['Darkblue',    'SeaGreen3'],
-			\ ['darkgray',    'DarkOrchid3'],
+			\ ['darkgray',    'DarkOrchid2'],
 			\ ['darkgreen',   'firebrick3'],
 			\ ['darkcyan',    'RoyalBlue3'],
 			\ ['darkred',     'SeaGreen3'],
@@ -89,11 +100,11 @@ vmap V <Plug>(expand_region_shrink)
 " let g:syntastic_auto_loc_list = 1
 " let g:syntastic_check_on_open = 1
 " let g:syntastic_check_on_wq = 0
-Plugin 'sillybun/setbreakpoints_python'
-let g:setbreakpoints_pdb = 0
-autocmd Filetype python nnoremap <F12> <Esc>:call ToggleBreakPoint()<Cr>
-Plugin 'sillybun/autoformatpythonstatement'
-let g:autoformatpython_enabled = 1
+"Plugin 'sillybun/setbreakpoints_python'
+"let g:setbreakpoints_pdb = 0
+"autocmd Filetype python nnoremap <F12> <Esc>:call ToggleBreakPoint()<Cr>
+"Plugin 'sillybun/autoformatpythonstatement'
+"let g:autoformatpython_enabled = 1
 
 "安装插件写在这之前
 call vundle#end()            " required
@@ -116,14 +127,14 @@ colorscheme molokai
 set nocompatible
 syntax on
 filetype plugin indent on
-set ic
+"set ic
 set hlsearch incsearch
 set cursorline
 set encoding=utf-8
 set fileencodings=utf-8,ucs-bom,GB2312,big5
-set autoindent
-set smartindent
-set scrolloff=4
+"set autoindent
+"set smartindent
+"set scrolloff=4
 set showmatch
 " set nu
 set ignorecase smartcase
@@ -164,7 +175,7 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 " for youcompleteme
 autocmd Filetype python,c,cpp,Java,vim nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR> " 跳转到定义处
 let g:ycm_min_num_of_chars_for_completion=2
-let g:ycm_python_binary_path = '/Library/Frameworks/Python.framework/Versions/3.6/bin/python3'
+let g:ycm_python_binary_path = '/usr/bin/python3'
 
 " autorun
 """"""""""""""""""""""
@@ -210,6 +221,3 @@ func! CompileRunGcc()
 endfunc
 
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-" call vundle#end()
-" filetype plugin indent on
-
